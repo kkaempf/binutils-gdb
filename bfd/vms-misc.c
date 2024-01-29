@@ -586,10 +586,10 @@ vms_time_to_time_t (unsigned int hi, unsigned int lo)
   /* Return 0 in case of underflow.  */
   if (hi == 0 && lo < VMS_TIME_OFFSET)
     return 0;
-
-  res = lo - VMS_TIME_OFFSET;
-  if (res <= 0)
+  if (lo < VMS_TIME_OFFSET)
     return 0;
+  res = lo - VMS_TIME_OFFSET;
+
   return res;
 }
 
