@@ -140,7 +140,7 @@ $
 $!
 $! create bfdver.h
 $!
-$ write sys$output "Generate `bfdver.h' from 'version.h' and `configure.in'."
+$ write sys$output "Generate `bfdver.h' from 'version.h' and `version.m4'."
 $ edit/tpu/nojournal/nosection/nodisplay/command=sys$input -
         []version.h /output=[]bfdver.h
 $DECK
@@ -149,9 +149,9 @@ $DECK
 !
 !
    set (success,off);
-   vfile := CREATE_BUFFER("vfile", "configure.in");
+   vfile := CREATE_BUFFER("vfile", "version.m4");
    rang := CREATE_RANGE(BEGINNING_OF(vfile), END_OF(vfile));
-   match_pos := SEARCH_QUIETLY('AC_INIT([bfd], [', FORWARD, EXACT, rang);
+   match_pos := SEARCH_QUIETLY('m4_define([BFD_VERSION], [', FORWARD, EXACT, rang);
    IF match_pos <> 0 THEN;
      POSITION(BEGINNING_OF(match_pos));
      ERASE(match_pos);
