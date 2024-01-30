@@ -1,0 +1,18 @@
+#ifndef INTTYPES_H
+#define INTTYPES_H 1
+#include <stdint.h>
+
+#define PRId32 "ld"
+#define PRIo32 "lo"
+#define PRIu32 "lu"
+#define PRIx32 "lx"
+#define SCNu32 "lu"
+
+#define PRId64 "lld"
+#define PRIo64 "llo"
+#define PRIu64 "llu"
+#define PRIx64 "llx"
+#define SCNu64 "llu"
+#define UINT64_C(x) x##ULL 
+#define UINT32_C(x) x##UL
+#endif
