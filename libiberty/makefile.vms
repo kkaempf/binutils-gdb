@@ -27,11 +27,15 @@ CFLAGS=$(OPT)/include=([],[-.include])/name=(as_is,shortened)\
  /prefix=(all,except=("getopt","optarg","optopt","optind","opterr"))
 endif
 
-libiberty.olb: $(OBJS)
+libiberty.olb: config.h $(OBJS)
 	purge
 	lib/create libiberty *.obj
 
+config.h: config.h-vms
+	copy $< $@
+
 clean:
 	$$ purge
+	$(RM) config.h;
 	$(RM) *.obj;
 	$(RM) libiberty.olb;
