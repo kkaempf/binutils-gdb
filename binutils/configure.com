@@ -29,6 +29,9 @@ $! Generate config.h
 $!
 $ create config.h
 /* config.h.  Generated automatically by configure.com  */
+#define DEFAULT_STRINGS_ALL 0
+#define DEFAULT_FOR_FOLLOW_LINKS 0
+#define PLUGIN_BIG_ENDIAN 1
 /* Is the type time_t defined in <time.h>?  */
 #define HAVE_TIME_T_IN_TIME_H 1
 /* Is the type time_t defined in <sys/types.h>?  */
@@ -43,6 +46,10 @@ $ create config.h
 #define HAVE_UTIMES 1
 /* Define if you have the <fcntl.h> header file.  */
 #define HAVE_FCNTL_H 1
+/* Define if you have the <inttypes.h> header file.  */
+#define HAVE_INTTYPES_H 1
+/* Define if you have the <stdint.h> header file.  */
+#define HAVE_STDINT_H 1
 /* Define if you have the <stdlib.h> header file.  */
 #define HAVE_STDLIB_H 1
 /* Define if you have the <string.h> header file.  */
@@ -54,11 +61,21 @@ $ create config.h
 /* Define if you have the <unistd.h> header file.  */
 #define HAVE_UNISTD_H 1
 
+#define HAVE_DECL_ASPRINTF 0
+#define HAVE_DECL_SNPRINTF 0
+#define HAVE_DECL_VASPRINTF 0
+#define HAVE_DECL_VSNPRINTF 0
+
+#define __BYTE_ORDER __LITTLE_ENDIAN
+
 /* Alloca.  */
 #ifdef __DECC
 #include <builtins.h>
 #define C_alloca(x) __ALLOCA(x)
 #endif
+
+#include "libiberty.h"
+
 /* Name of package */
 #define PACKAGE "binutils"
 
