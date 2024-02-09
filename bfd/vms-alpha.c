@@ -1631,8 +1631,10 @@ image_write (bfd *abfd, unsigned char *ptr, unsigned int size)
 		  (long) off);
 #endif
 
-  if (PRIV (image_section)->contents != NULL)
-    memcpy (sec->contents + off, ptr, size);
+  if (sec->contents != NULL)
+    {
+      memcpy (sec->contents + off, ptr, size);
+    }
   else
     {
       unsigned int i;
