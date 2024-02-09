@@ -6,6 +6,12 @@
 #define HAVE_INTTYPES_H 1
 #define HAVE_SYS_STAT_H 1
 #define HAVE_SYS_TIME_H 1
+#define HAVE_DECL_ASPRINTF 0
+#define HAVE_DECL_SNPRINTF 0
+#define HAVE_DECL_VASPRINTF 0
+#define HAVE_DECL_VSNPRINTF 0
+#define HAVE_DECL_XASPRINTF 0
+#define HAVE_DECL_XVASPRINTF 0
 
 /* Cheat: use vms builtin alloca.  */
 #ifdef __DECC
