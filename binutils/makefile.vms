@@ -35,24 +35,28 @@ LIBIBERTY_DEP = [-.libiberty]libiberty.olb
 LIBIBERTY = [-.libiberty]libiberty.olb/lib
 OPCODES_DEP = [-.opcodes]libopcodes.olb
 OPCODES = [-.opcodes]libopcodes.olb/lib
+LIBZ_DEP = [-.zlib]libz.olb
+LIBZ = [-.zlib]libz.olb/lib
+LIBSFRAME_DEP = [-.libsframe]libsframe.olb
+LIBSFRAME = [-.libsframe]libsframe.olb/lib
 
 DEBUG_OBJS = rddbg.obj,debug.obj,stabs.obj,rdcoff.obj,dwarf.obj,\
   elfcomm.obj
 
 BULIBS = bucomm.obj,version.obj,filemode.obj
 
-ADDL_DEPS = $(BULIBS),$(LIBBFD_DEP),$(LIBIBERTY_DEP)
-ADDL_LIBS = $(BULIBS),$(LIBBFD),$(LIBIBERTY)
+ADDL_DEPS = $(BULIBS),$(LIBBFD_DEP),$(LIBIBERTY_DEP),$(OPCODES_DEP),$(LIBZ_DEP),$(LIBSFRAME_DEP)
+ADDL_LIBS = $(BULIBS),$(LIBBFD),$(LIBIBERTY),$(OPCODES),$(LIBZ),$(LIBSFRAME)
 
 SIZEOBJS = $(ADDL_DEPS),size.obj
 
 STRINGSOBJS = $(ADDL_DEPS),strings.obj
 
-NMOBJS = $(ADDL_DEPS),nm.obj
+NMOBJS = $(ADDL_DEPS),nm.obj,demanguse.obj
 
 ADDR2LINEOBJS = $(ADDL_DEPS),addr2line.obj
 
-OBJDUMPOBJS = objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(ADDL_DEPS),$(OPCODES_DEP)
+OBJDUMPOBJS = demanguse.obj,objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(ADDL_DEPS),$(OPCODES_DEP)
 
 READELFOBJS = readelf.obj,dwarf.obj,unwind-ia64.obj,$(ADDL_DEPS)
 
@@ -65,13 +69,13 @@ strings.exe: $(STRINGSOBJS)
 	link/exe=$@ strings.obj,$(ADDL_LIBS)
 
 nm.exe: $(NMOBJS)
-	link/exe=$@ nm.obj,$(ADDL_LIBS)
+	link/exe=$@ nm.obj,demanguse.obj,$(ADDL_LIBS)
 
 addr2line.exe: $(ADDR2LINEOBJS)
 	link/exe=$@ addr2line.obj,$(ADDL_LIBS)
 
 objdump.exe: $(OBJDUMPOBJS)
-	link/exe=$@ objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(ADDL_LIBS),$(OPCODES)
+	link/exe=$@ demanguse.obj,objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(ADDL_LIBS)
 
 readelf.exe: $(READELFOBJS)
 	link/exe=$@ readelf.obj,dwarf.obj,unwind-ia64.obj,$(ADDL_LIBS)
