@@ -106,14 +106,17 @@ $  create config-vms.in
 
 /* Define to 1 if you have the declaration of `vsnprintf', and to 0 if you
    don't. */
-#undef HAVE_DECL_VSNPRINTF
+#define HAVE_DECL_VSNPRINTF 0
 
 /* Define to 1 if you have the declaration of `snprintf', and to 0 if you
    don't. */
-#define HAVE_DECL_SNPRINTF 1
+#define HAVE_DECL_SNPRINTF 0
 
 /* Define to 1 if you have the <errno.h> header file. */
 #define HAVE_ERRNO_H 1
+
+/* Define if you have the <inttypes.h> header file.  */
+#define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
@@ -125,7 +128,7 @@ $  create config-vms.in
 #define HAVE_STDARG_H 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#undef HAVE_STDINT_H
+#define HAVE_STDINT_H 1
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #define HAVE_STDLIB_H 1
@@ -147,6 +150,12 @@ $  create config-vms.in
 
 /* Define to 1 if you have the `unlink' function. */
 #undef HAVE_UNLINK
+
+#define DEFAULT_COMPRESSED_DEBUG_ALGORITHM COMPRESS_DEBUG_GABI_ZLIB
+
+#define HAVE_DECL_ASPRINTF 0
+#define HAVE_DECL_VASPRINTF 0
+#define HAVE_DECL_XASPRINTF 0
 
 /* Name of package */
 #define PACKAGE "gas"
