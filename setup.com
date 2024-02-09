@@ -41,6 +41,10 @@ $   set def [.bfd]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
 $   set def [-.libiberty]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
+$   set def [-.zlib]
+$   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
+$   set def [-.libsframe]
+$   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
 $   set def [-.opcodes]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
 $   set def [-.binutils]
