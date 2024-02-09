@@ -37,8 +37,8 @@ DEFS=SELECT_VECS="&alpha_vms_vec",SELECT_ARCHITECTURES="&bfd_alpha_arch"
 endif
 
 OBJS:=$(OBJS),archive.obj,archive64.obj,archures.obj,bfd.obj,bfdio.obj,\
-  binary.obj,cache.obj,coffgen.obj,compress.obj,corefile.obj,dwarf2.obj,\
-  elf.obj,format.obj,hash.obj,ihex.obj,init.obj,libbfd.obj,linker.obj,\
+  binary.obj,cache.obj,coff-bfd.obj,coffgen.obj,compress.obj,corefile.obj,dwarf2.obj,\
+  elf.obj,elf-properties.obj,format.obj,hash.obj,ihex.obj,init.obj,libbfd.obj,linker.obj,\
   opncls.obj,reloc.obj,section.obj,simple.obj,srec.obj,stab-syms.obj,\
   syms.obj,targets.obj,tekhex.obj,verilog.obj
 
