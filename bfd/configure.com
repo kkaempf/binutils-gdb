@@ -195,6 +195,18 @@ $DECK
 $  EOD
 $!
 $!
+$! create stdint.h
+$!
+$ write sys$output "Generate `stdint.h'."
+$ copy [-.include]stdint.h-vms [-.include]stdint.h
+$!
+$!
+$! create inttypes.h
+$!
+$ write sys$output "Generate `inttypes.h'."
+$ copy [-.include]inttypes.h-vms [-.include]inttypes.h
+$!
+$!
 $! create targmatch.h
 $!
 $ write sys$output "Generate `targmatch.h'"
@@ -233,6 +245,8 @@ $ create []config.h
 #define HAVE_FCNTL 1
 /* Define if you have the getpagesize function.  */
 #define HAVE_GETPAGESIZE 1
+/* Define if you have the <inttypes.h> header file.  */
+#define HAVE_INTTYPES_H 1
 /* Define if you have the madvise function.  */
 #define HAVE_MADVISE 1
 /* Define if you have the mprotect function.  */
@@ -241,6 +255,8 @@ $ create []config.h
 #define HAVE_FCNTL_H 1
 /* Define if you have the <stddef.h> header file.  */
 #define HAVE_STDDEF_H 1
+/* Define if you have the <stdint.h> header file.  */
+#define HAVE_STDINT_H 1
 /* Define if you have the <stdlib.h> header file.  */
 #define HAVE_STDLIB_H 1
 /* Define if you have the <string.h> header file.  */
