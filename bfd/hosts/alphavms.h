@@ -40,10 +40,13 @@
 #include <unixio.h>
 #include <time.h>
 
+#include "libiberty.h"
 #include "filenames.h"
 #include "fopen-vms.h"
 
 #define NO_FCNTL 1
+
+#define TLS
 
 #ifndef O_ACCMODE
 #define O_ACCMODE (O_RDONLY | O_WRONLY | O_RDWR)
