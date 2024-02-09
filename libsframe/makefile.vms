@@ -1,0 +1,50 @@
+#
+# Makefile for sframe library under openVMS
+#
+# For use with gnu-make for vms
+#
+# Created by Klaus Kämpf, kkaempf@gmail.com
+#
+#   Copyright (C) 2012-2024 Free Software Foundation, Inc.
+#
+# This file is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file COPYING3.  If not see
+# <http://www.gnu.org/licenses/>.
+#
+
+OBJS:=sframe.obj,sframe-dump.obj,sframe-error.obj
+
+ifeq ($(CC),gcc)
+CFLAGS=/include=([],[-.include],[-.libctf])
+else
+OPT=/noopt/debug
+CFLAGS=/name=(as_is,shortened)/include=([],"../include","../libctf")\
+ /define=("unlink=remove",DEBUGDIR="""GNU$$DEBUGDIR:""")\
+ /warns=(infor=(missingreturn,badansialias))$(OPT)
+endif
+
+libsframe.olb: $(OBJS)
+	purge
+	lib/create libsframe $(OBJS)
+
+config.h: config.h-vms
+	copy $< $@
+
+sframe.c: config.h
+sframe-dump.c: config.h
+sframe-error.c: config.h
+
+clean:
+	$$ purge
+	$(RM) *.olb;
+	$(RM) *.obj;
