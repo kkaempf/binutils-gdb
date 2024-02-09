@@ -2,7 +2,7 @@ $!
 $! Build procedure
 $!
 $! Note: you need a DCL-compatible gnu make.
-$ MAKE="make381"
+$ MAKE="make"
 $ OPT=""
 $!
 $ if (P1 .EQS. "CONFIGURE") .OR. (P1 .EQS. "ALL")
