@@ -255,6 +255,14 @@ $ create []config.h
 #define HAVE_UNISTD_H 1
 /* Disable NLS  */
 #undef ENABLE_NLS
+
+#define HAVE_DECL_ASPRINTF 0
+#define HAVE_DECL_SNPRINTF 0
+#define HAVE_DECL_VASPRINTF 0
+#define HAVE_DECL_VSNPRINTF 0
+#define HAVE_DECL_XASPRINTF 0
+#define HAVE_DECL_XVASPRINTF 0
+
 /* Name of package */
 #define PACKAGE "bfd"
 /* Define to the address where bug reports for this package should be sent. */
