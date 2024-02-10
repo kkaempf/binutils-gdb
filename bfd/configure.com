@@ -281,7 +281,7 @@ $   create build.com
 $DECK
 $ DEFS="""SELECT_VECS=&alpha_vms_vec"","+-
   """SELECT_ARCHITECTURES=&bfd_alpha_arch"""
-$ FILES="cpu-alpha,vms,vms-hdr,vms-gsd,vms-tir,vms-misc,"
+$ FILES="cpu-alpha,vms-lib,vms-misc,"
 $EOD
 $ endif
 $ if ARCH.eqs."ia64"
