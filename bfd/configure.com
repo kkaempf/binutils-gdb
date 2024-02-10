@@ -328,7 +328,7 @@ $DECK
 $ DEFS=DEFS + ",""unlink=remove"",""DEBUGDIR=""""GNU$DEBUGDIR:"""""""
 $ OPT="/noopt/debug"
 $ CFLAGS="/name=(as_is,shortened)" + -
-  "/include=([],""../"",""../include"")" + -
+  "/include=([],""../"",""../include"",""../zlib"")" + -
   "/define=(" + DEFS + ")" + OPT
 $ FILES=FILES + "archive,archive64,archures,bfd,bfdio,binary,cache,coffgen,"+-
   "compress,corefile,dwarf2,elf,format,hash,ihex,init,libbfd,linker,"+-
