@@ -1,0 +1,64 @@
+#
+# makefile.vms for binutils/zlib
+#
+# written by Klaus Kämpf
+#
+# Use with make 3.76 or later
+#
+
+ifeq ($(CC),gcc)
+  DEFS=/prefix=all
+else
+ifeq ($(ARCH),IA64)
+  DEFS=/prefix=all/name=as_is/opt=(inline=speed)
+endif
+ifeq ($(ARCH),ALPHA)
+  DEFS=/prefix=all/name=as_is/opt=(inline=speed)
+endif
+endif
+
+CFLAGS=/include=([],[-],[-.include],[-.zlib])$(DEFS)
+
+SOURCES=adler32.c,compress.c,crc32.c,deflate.c,gzclose.c,gzlib.c,\
+	gzread.c,gzwrite.c,infback.c,inffast.c,inflate.c,inftrees.c,\
+	trees.c,uncompr.c,zutil.c
+
+all: zconf.h example.exe minigzip.exe
+
+clean :
+	delete/nolog *.obj;*,libz.olb;*,*.opt;*,*.exe;*,zconf.h;*
+
+example.exe: [.test]example.obj,libz.olb
+	LINK$(LFLAGS)/exe=$@ $(subst libz.olb,[-.zlib]libz.olb/lib,$^)
+
+minigzip.exe: [.test]minigzip.obj,libz.olb
+	LINK$(LFLAGS)/exe=$@ $(subst libz.olb,[-.zlib]libz.olb/lib,$^)
+
+libz.olb: $(subst .c,.obj,$(SOURCES))
+	lib/crea $@ $^
+
+zconf.h: zconf.h_in,zconf.h_in_vms
+	copy $^ $@
+	SET FILE/ATTRIBUTE=RFM:STMLF $@
+
+OBJS=($SOURCES .c .obj)
+
+
+# Other dependencies.
+adler32.obj  : adler32.c zutil.h zlib.h zconf.h
+compress.obj : compress.c zlib.h zconf.h
+crc32.obj    : crc32.c zutil.h zlib.h zconf.h
+deflate.obj  : deflate.c deflate.h zutil.h zlib.h zconf.h
+[.test]example.obj  : [.test]example.c zlib.h zconf.h
+gzclose.obj  : gzclose.c zutil.h zlib.h zconf.h
+gzlib.obj    : gzlib.c zutil.h zlib.h zconf.h
+gzread.obj   : gzread.c zutil.h zlib.h zconf.h
+gzwrite.obj  : gzwrite.c zutil.h zlib.h zconf.h
+inffast.obj  : inffast.c zutil.h zlib.h zconf.h inftrees.h inffast.h
+inflate.obj  : inflate.c zutil.h zlib.h zconf.h
+inftrees.obj : inftrees.c zutil.h zlib.h zconf.h inftrees.h
+[.test]minigzip.obj : [.test]minigzip.c zlib.h zconf.h
+trees.obj    : trees.c deflate.h zutil.h zlib.h zconf.h
+uncompr.obj  : uncompr.c zlib.h zconf.h
+zutil.obj    : zutil.c zutil.h zlib.h zconf.h
+infback.obj  : infback.c zutil.h zconf.h inftrees.h inflate.h inffast.h inffixed.h

@@ -1,0 +1,14 @@
+/* VMS specifics */
+#define VMS 1
+#include <unistd.h>
+#include <unixio.h>
+#define NO_snprintf
+#define NO_vsnprintf
+#ifdef _LARGEFILE
+# define off64_t __off64_t
+# define fopen64 fopen
+# define fseeko64 fseeko
+# define lseek64 lseek
+# define ftello64 ftell
+#endif
+
