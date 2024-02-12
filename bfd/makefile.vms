@@ -43,10 +43,10 @@ OBJS:=$(OBJS),archive.obj,archive64.obj,archures.obj,bfd.obj,bfdio.obj,\
   syms.obj,targets.obj,tekhex.obj,verilog.obj
 
 ifeq ($(CC),gcc)
-CFLAGS=/include=([],[-.include])$(DEFS)
+CFLAGS=/include=([],[-.include],[-.zlib])$(DEFS)
 else
 OPT=/noopt/debug
-CFLAGS=/name=(as_is,shortened)/include=([],"../include")\
+CFLAGS=/name=(as_is,shortened)/include=([],"../include","../zlib")\
  /define=("unlink=remove",DEBUGDIR="""GNU$$DEBUGDIR:""",$(DEFS))\
  /warns=(infor=(missingreturn,badansialias))$(OPT)
 endif
