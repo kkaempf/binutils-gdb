@@ -23,19 +23,19 @@ endif
 
 all:	check_cc $(CHECK-COMPILER) [.binutils]makefile.vms
 	$(CD) [.zlib]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.bfd]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.opcodes]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.libiberty]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.libsframe]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.binutils]
-	@gmake "CC=$(CC)"
+	make "CC=$(CC)"
 	$(CD) [-.gas]
-	@gmake "CC=$(GASCC)"
+	make "CC=$(GASCC)"
 	$(CD) [-]
 
 check_cc:
@@ -54,25 +54,25 @@ check_compiler:
 
 install: all
 	$(CD) [.binutils]
-	@gmake "CC=$(CC)" install
+	make "CC=$(CC)" install
 	$(CD) [-]
 	$(CD) [.gas]
-	@gmake "CC=$(GASCC)" install
+	make "CC=$(GASCC)" install
 	$(CD) [-]
 
 clean:
 	$(CD) [.bfd]
-	@gmake clean
+	make clean
 	$(CD) [-.opcodes]
-	@gmake clean
+	make clean
 	$(CD) [-.zlib]
-	@gmake clean
+	make clean
 	$(CD) [-.libiberty]
-	@gmake clean
+	make clean
 	$(CD) [-.libsframe]
-	@gmake clean
+	make clean
 	$(CD) [-.binutils]
-	@gmake clean
+	make clean
 	$(CD) [-.gas]
-	@gmake clean
+	make clean
 	$(CD) [-]
