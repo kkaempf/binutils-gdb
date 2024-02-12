@@ -24,7 +24,7 @@
 
 DEFS=/define=("OBJDUMP_PRIVATE_VECTORS=")
 OPT=/noopt/debug
-CFLAGS=$(OPT)/include=([],"../include",[-.bfd])$(DEFS)\
+CFLAGS=$(OPT)/include=([],"../include",[-.bfd],[-.zlib])$(DEFS)\
  /name=(as_is,shortened)\
  /prefix=(all,except=("getopt","optarg","optopt","optind","opterr"))\
  /warns=(info=(ptrmismatch,shiftcount))
