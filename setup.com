@@ -19,29 +19,15 @@ $    set def [-.gas]
 $    @configure
 $    set def [-]
 $ endif
-$ if (P1 .EQS. "BUILD") .OR. (P1 .EQS. "ALL")
-$ then
-$   set def [.bfd]
-$   @build
-$   set def [-.libiberty]
-$   @build
-$   set def [-.opcodes]
-$   @build
-$   set def [-.binutils]
-$   @build
-$   set def [-.gas]
-$   @build
-$   set def [-]
-$ endif
 $ if P1 .EQS. "MAKE"
 $ then
 $   ARCH=F$GETSYI("ARCH_NAME")
 $   ARCH=F$EDIT(arch,"UPCASE")
 $   set def [.bfd]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
-$   set def [-.libiberty]
-$   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
 $   set def [-.zlib]
+$   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
+$   set def [-.libiberty]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
 $   set def [-.libsframe]
 $   'MAKE "ARCH=''ARCH'" "OPT=''OPT'"
