@@ -39,11 +39,11 @@ OBJS:=$(OBJS),dis-init.obj,dis-buf.obj,disassemble.obj
 
 ifeq ($(CC),gcc)
 DEFS=/define=($(ARCHDEF))
-CFLAGS=/include=([],[-.include],[-.bfd])$(DEFS)
+CFLAGS=/include=([],[-.include],[-.bfd],[-.libiberty])$(DEFS)
 else
 DEFS=/define=($(ARCHDEF))
 OPT=/noopt/debug
-CFLAGS=$(OPT)/include=([],"../include",[-.bfd])$(DEFS)\
+CFLAGS=$(OPT)/include=([],"../include",[-.bfd],[-.libiberty])$(DEFS)\
  /name=(as_is,shortened)
 endif
 
@@ -51,7 +51,14 @@ libopcodes.olb: $(OBJS)
 	purge
 	lib/create libopcodes *.obj
 
+config.h: config.h-vms
+	copy $^ $@
+
 clean:
 	$$ purge
 	$(RM) *.obj;
 	$(RM) libopcodes.olb;
+
+distclean: clean
+	$(RM) config.h;
+realclean: distclean
