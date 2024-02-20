@@ -1,0 +1,56 @@
+#
+# makefile.vms for binutils/libctf
+#
+# written by Klaus Kämpf
+#
+# Use with make 3.76 or later
+#
+
+ifeq ($(CC),gcc)
+  DEFS=/prefix=all
+else
+endif
+ifeq ($(ARCH),IA64)
+  DEFS+=/name=as_is/opt=(inline=speed)
+endif
+ifeq ($(ARCH),ALPHA)
+  DEFS+=/name=as_is/opt=(inline=speed)
+endif
+
+CFLAGS=/include=([],[-],[-.include],[-.bfd],[-.zlib])$(DEFS)
+
+SOURCES=ctf-archive.c,ctf-create.c,ctf-decl.c,ctf-dedup.c,ctf-dump.c\
+	,ctf-error.c,ctf-hash.c,ctf-labels.c,ctf-link.c,ctf-lookup.c\
+	,ctf-open-bfd.c,ctf-open.c,ctf-qsort_r.c,ctf-serialize.c\
+	,ctf-sha1.c,ctf-string.c,ctf-subr.c,ctf-types.c,ctf-util.c
+
+libctf.olb: $(subst .c,.obj,$(SOURCES))
+	lib/crea $@ $^
+
+clean :
+	delete/nolog *.obj;*,libctf.olb;*,config.h;*
+
+config.h: config.h-vms
+	copy $^ $@
+
+OBJS=($SOURCES .c .obj)
+
+ctf-archive.c: config.h
+ctf-create.c: config.h
+ctf-decl.c: config.h
+ctf-dedup.c: config.h
+ctf-dump.c: config.h
+ctf-error.c: config.h
+ctf-hash.c: config.h
+ctf-labels.c: config.h
+ctf-link.c: config.h
+ctf-lookup.c: config.h
+ctf-open-bfd.c: config.h
+ctf-open.c: config.h
+ctf-qsort_r.c: config.h
+ctf-serialize.c: config.h
+ctf-sha1.c: config.h
+ctf-string.c: config.h
+ctf-subr.c: config.h
+ctf-types.c: config.h
+ctf-util.c: config.h
