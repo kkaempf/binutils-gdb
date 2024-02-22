@@ -51,12 +51,16 @@ CFLAGS=/name=(as_is,shortened)/include=([],"../include","../zlib")\
  /warns=(infor=(missingreturn,badansialias))$(OPT)
 endif
 
-libbfd.olb: $(OBJS)
+libbfd.olb: config.h targmatch.h $(OBJS)
 	purge
 	lib/create libbfd $(OBJS)
 
 targmatch.h: bfd.h
+	$$ @configure
 config.h: bfd.h
+	$$ @configure
+bfd.h: bfd-in2.h
+	$$ @configure
 vms-misc.c: vms.h
 targets.c: targmatch.h
 
