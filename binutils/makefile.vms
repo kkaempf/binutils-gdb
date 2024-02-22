@@ -82,7 +82,6 @@ readelf.exe: $(READELFOBJS)
 
 config.h:
 	$$ @configure
-	$(MAKE) -f makefile.vms "CC=$(CC)"
 
 clean:
 	$$ purge
