@@ -21,7 +21,7 @@ else
   CHECK-COMPILER =
 endif
 
-all:	check_cc $(CHECK-COMPILER) [.binutils]makefile.vms
+all:	check_cc $(CHECK-COMPILER)
 	$(CD) [.zlib]
 	make "CC=$(CC)"
 	$(CD) [-.bfd]
@@ -45,12 +45,7 @@ ifeq ($CC,)
 endif
 
 check_compiler:
-	@$(ECHO) "Perform a '$$ @setup' before starting make"
-
-[.binutils]makefile.vms:
-	$(CD) [.binutils]
-	$$ @configure
-	$(CD) [-]
+	@$(ECHO) "Perform a '$$ @setup configure' before starting make"
 
 install: all
 	$(CD) [.binutils]
